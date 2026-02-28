@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:models="clr-namespace:Capisoft.AI.TranscribeApp.Models"
+             x:Class="Capisoft.AI.TranscribeApp.Pages.TranslatePage"
+             Title="Translate">
+    <Grid Padding="16" RowDefinitions="Auto,Auto,Auto,*" RowSpacing="10">
+        <Button x:Name="RecordButton"
+                Grid.Row="0"
+                Text="Hold to Record"
+                Pressed="OnRecordPressed"
+                Released="OnRecordReleased" />
+
+        <ActivityIndicator x:Name="BusyIndicator"
+                           Grid.Row="1"
+                           IsVisible="False"
+                           IsRunning="False"
+                           HorizontalOptions="Center" />
+
+        <Button Grid.Row="2"
+                Text="Clear"
+                Clicked="OnClearClicked" />
+
+        <CollectionView x:Name="HistoryCollectionView"
+                        Grid.Row="3"
+                        SelectionMode="None">
+            <CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="models:ConversationItem">
+                    <VerticalStackLayout Spacing="8" Margin="0,10,0,0">
+                        <Frame BackgroundColor="Transparent" BorderColor="#6E6E6E" Padding="10" CornerRadius="10" HasShadow="False">
+                            <VerticalStackLayout Spacing="5">
+                                <Label Text="{Binding CreatedAtLocal, StringFormat='Audio {0:G}'}"
+                                       FontAttributes="Bold"
+                                       FontSize="12" />
+                                <Button Text="Play Voice"
+                                        Clicked="OnPlayClicked"
+                                        CommandParameter="{Binding AudioPath}" />
+                            </VerticalStackLayout>
+                        </Frame>
+
+                        <Frame BackgroundColor="Transparent" BorderColor="#6E6E6E" Padding="10" CornerRadius="10" HasShadow="False">
+                            <VerticalStackLayout Spacing="8">
+                                <Label Text="{Binding Transcription}" />
+                                <Button Text="Copy"
+                                        HorizontalOptions="End"
+                                        Clicked="OnCopyClicked"
+                                        CommandParameter="{Binding Transcription}" />
+                            </VerticalStackLayout>
+                        </Frame>
+                    </VerticalStackLayout>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </Grid>
+</ContentPage>

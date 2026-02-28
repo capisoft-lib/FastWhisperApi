@@ -1,0 +1,33 @@
+# ---------------------------------------------------------------------------
+# 1. PyTorch 2.6 + CUDA 12.4 (install first; use official index for your OS/CUDA)
+#    See: https://pytorch.org/get-started/locally/
+#    Example (Windows, CUDA 12.4):
+#      pip install torch==2.6.* torchvision torchaudio --index-url https://download.pytorch.org/whl/cu124
+#    CPU-only fallback:
+#      pip install torch==2.6.* torchvision torchaudio
+# ---------------------------------------------------------------------------
+#torch>=2.6.0,<2.7
+#torchvision
+#torchaudio
+
+# ---------------------------------------------------------------------------
+# 2. Transformers + dependencies for Whisper
+# ---------------------------------------------------------------------------
+transformers>=4.45.0
+accelerate>=0.33.0
+optimum>=1.21.0
+
+# ---------------------------------------------------------------------------
+# 3. Flash Attention 2 (optional; faster on GPU). Install after torch, from local wheel.
+#    Example (Windows, cu124, torch 2.6, Python 3.11): install from project wheel
+#      pip install "flash_attn-2.7.4%2Bcu124torch2.6.0cxx11abiFALSE-cp311-cp311-win_amd64.whl"
+#    Without flash-attn, app uses SDPA.
+# ---------------------------------------------------------------------------
+# flash-attn  # install from wheel; see README-API.md
+
+# ---------------------------------------------------------------------------
+# 4. API
+# ---------------------------------------------------------------------------
+fastapi>=0.109.0
+uvicorn[standard]>=0.27.0
+python-multipart>=0.0.6
