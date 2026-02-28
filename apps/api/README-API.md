@@ -13,8 +13,8 @@ cd <repo-root>
 # 1) PyTorch 2.6 + CUDA 12.4 (use index that matches your CUDA)
 pip install torch==2.6.* torchvision torchaudio --index-url https://download.pytorch.org/whl/cu124
 
-# 2) Optional: Flash Attention 2 (faster). Install from the project wheel (see below).
-pip install "flash_attn-2.7.4%2Bcu124torch2.6.0cxx11abiFALSE-cp311-cp311-win_amd64.whl"
+# 2) Optional: Flash Attention 2 (faster). Install from Hugging Face (see below).
+pip install "https://huggingface.co/lldacing/flash-attention-windows-wheel/resolve/main/flash_attn-2.7.4%2Bcu124torch2.6.0cxx11abiFALSE-cp311-cp311-win_amd64.whl"
 
 # 3) API and Whisper deps
 pip install -r apps/api/requirements-api.txt
@@ -24,7 +24,7 @@ For **CPU-only** or a different CUDA version, see [PyTorch get-started](https://
 
 ### Flash Attention 2 wheel (optional)
 
-A prebuilt `flash_attn` wheel is provided in [this repository](https://github.com/capisoft-lib/FastWhisperApi) at the project root (filename: `flash_attn-2.7.4+cu124torch2.6.0cxx11abiFALSE-cp311-cp311-win_amd64.whl`). It was **tested on**:
+The wheel is **not** in this git repo (`.gitignore` excludes `*.whl`). Prebuilt Windows wheels are available at [**lldacing/flash-attention-windows-wheel**](https://huggingface.co/lldacing/flash-attention-windows-wheel/tree/main) on Hugging Face. For Python 3.11 + CUDA 12.4 + PyTorch 2.6 use `flash_attn-2.7.4+cu124torch2.6.0cxx11abiFALSE-cp311-cp311-win_amd64.whl`. **Tested on**:
 
 - **OS:** Windows  
 - **Python:** 3.11  
