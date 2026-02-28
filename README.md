@@ -6,7 +6,7 @@ Speech-to-text API and clients using [**faster-whisper**](https://github.com/SYS
 - `apps/api`: FastAPI backend for Whisper transcription and translation.
 
 **Libraries:**
-- `libraries/FastWhisper.Client` *(submodule)*: .NET client library for API integration.
+- `libraries/FastWhisper.Client` *(submodule)*: .NET client library for API integration. [![NuGet](https://img.shields.io/nuget/v/FastWhisper.Client.svg)](https://www.nuget.org/packages/FastWhisper.Client/)
 
 **Examples:**
 - `examples/console-ui`: Python console recorder that sends audio to API.
@@ -79,12 +79,18 @@ dotnet run --project libraries/FastWhisper.Client/examples/FastWhisper.Client.Ex
 
 For detailed usage, see the [FastWhisper.Client repository](https://github.com/capisoft-lib/FastWhisperApi.Client).
 
-**NuGet Package:**
+**Install via NuGet:**
+
+[![NuGet](https://img.shields.io/nuget/v/FastWhisper.Client.svg)](https://www.nuget.org/packages/FastWhisper.Client/)
+
 ```bash
 dotnet add package FastWhisper.Client
 ```
 
-Published to: **CapisoftLib** NuGet feed.
+**Links:**
+- 📦 [NuGet Package](https://www.nuget.org/packages/FastWhisper.Client/)
+- 📖 [Documentation](https://github.com/capisoft-lib/FastWhisperApi.Client)
+- 🔧 [Source Code](https://github.com/capisoft-lib/FastWhisperApi.Client)
 
 ### 4) MAUI App Example
 
