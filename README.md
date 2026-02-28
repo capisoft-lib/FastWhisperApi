@@ -65,9 +65,23 @@ Build targets:
 
 ### 4) Docker API
 
+#### Quick Start with Docker Hub Image
+
+Use the pre-built base image from Docker Hub:
+
+```bash
+docker pull capitaine/fast-whisper-api:latest
+```
+
+Or run with Docker Compose:
+
 ```powershell
 docker compose -f infra/docker/docker-compose.yml up --build
 ```
+
+For more information about the Docker deployment and base image, see [infra/docker/README.md](infra/docker/README.md).
+
+**Docker Hub**: [capitaine/fast-whisper-api](https://hub.docker.com/r/capitaine/fast-whisper-api)
 
 ## Environment
 

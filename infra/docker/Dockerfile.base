@@ -1,9 +1,10 @@
-# Application image using capitaine/fast-whisper-api base
-# To use the public base image, replace the build stage below with:
-# FROM capitaine/fast-whisper-api:latest
+# Base image for capitaine/fast-whisper-api
+# Linux image: PyTorch 2.6, CUDA 12.4 with all dependencies pre-installed
+FROM pytorch/pytorch:2.6.0-cuda12.4-cudnn9-devel
 
-# For local development, we build the base image first
-FROM pytorch/pytorch:2.6.0-cuda12.4-cudnn9-devel as base
+LABEL maintainer="capitaine"
+LABEL description="Base image for FastWhisper API - faster-whisper speech-to-text transcription with CUDA support"
+LABEL version="1.0.0"
 
 ENV DEBIAN_FRONTEND=noninteractive
 ENV PYTHONUNBUFFERED=1
@@ -24,25 +25,17 @@ RUN pip install --no-cache-dir -r requirements-docker.txt
 # Install faster-whisper
 RUN pip install --no-cache-dir faster-whisper
 
-# Flash Attention 2: skipped by default (prebuilt wheel can ABI-mismatch with image PyTorch).
-# App uses SDPA (FLASH=false). To try flash_attn, uncomment and set ENV FLASH=true.
+# Flash Attention 2: Optional for performance boost
+# Uncomment below to include flash-attn (increases build time significantly)
 # RUN pip install --no-cache-dir flash-attn --no-build-isolation
-
-# Application layer
-FROM base
-
-# Copy application code
-COPY apps/api/app/ ./app/
 
 # Hugging Face cache: use a single dir so a volume can persist the model
 ENV HF_HOME=/data/cache
 
-# Default env (override when running)
-ENV DEVICE_ID=0
-ENV BATCH_SIZE=24
-# Use SDPA by default in Docker to avoid flash_attn ABI issues; set FLASH=true if flash_attn works.
-ENV FLASH=false
+# Create cache directory
+RUN mkdir -p /data/cache
 
 EXPOSE 8000
 
+# Default CMD can be overridden by derived images
 CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000"]
