@@ -1,0 +1,3 @@
+[submodule "libraries/FastWhisper.Client"]
+	path = libraries/FastWhisper.Client
+	url = https://github.com/capisoft-lib/FastWhisperApi.Client.git

@@ -44,6 +44,8 @@ output.json
 last.wav
 last_recording.wav
 *.whl
+artifacts/
+*.nupkg
 
 # Legacy local source copy to avoid accidental commit
 src/FastWhisperMaui/

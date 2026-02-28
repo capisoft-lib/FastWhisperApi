@@ -1,10 +1,18 @@
 # Capisoft AI Transcribe App Monorepo
 
-Speech-to-text API and clients using [**faster-whisper**](https://github.com/SYSTRAN/faster-whisper) (SYSTRAN) for transcription and translation. Production-ready monorepo containing:
+Speech-to-text API and clients using [**faster-whisper**](https://github.com/SYSTRAN/faster-whisper) (SYSTRAN) for transcription and translation. Production-ready monorepo with clean architecture:
 
+**API:**
 - `apps/api`: FastAPI backend for Whisper transcription and translation.
-- `apps/console-ui`: Python console recorder that sends audio to API.
-- `apps/maui/Capisoft.AI.TranscribeApp`: .NET MAUI client (Windows, Android, iOS, MacCatalyst).
+
+**Libraries:**
+- `libraries/FastWhisper.Client` *(submodule)*: .NET client library for API integration.
+
+**Examples:**
+- `examples/console-ui`: Python console recorder that sends audio to API.
+- `examples/maui`: .NET MAUI client (Windows, Android, iOS, MacCatalyst).
+
+**Infrastructure:**
 - `infra/docker`: Container build and compose files for API deployment.
 
 ## Repository Layout
@@ -15,6 +23,11 @@ apps/
     app/
     requirements-api.txt
     scripts/install.ps1
+libraries/
+  FastWhisper.Client/  (submodule → capisoft-lib/FastWhisperApi.Client)
+    src/FastWhisper.Client/
+    examples/FastWhisper.Client.Example/
+examples/
   console-ui/
     record_and_transcribe.py
     requirements-recorder.txt
@@ -25,7 +38,6 @@ infra/
     Dockerfile
     docker-compose.yml
     requirements-docker.txt
-docs/
 ```
 
 ## Quick Start
@@ -42,19 +54,43 @@ uvicorn app.main:app --host 0.0.0.0 --port 8000 --app-dir apps/api
 
 For full API usage, parameters, and examples, see [apps/api/README-API.md](apps/api/README-API.md).
 
-### 2) Console UI
+### 2) Console UI Example
 
 ```powershell
 .\.venv\Scripts\Activate.ps1
-pip install -r apps/console-ui/requirements-recorder.txt
-python apps/console-ui/record_and_transcribe.py --url http://127.0.0.1:8000
+pip install -r examples/console-ui/requirements-recorder.txt
+python examples/console-ui/record_and_transcribe.py --url http://127.0.0.1:8000
 ```
 
-### 3) MAUI App
+### 3) C# Client Library
+
+The C# client is maintained in a separate repository as a submodule. Initialize it first:
+
+```bash
+git submodule update --init --recursive
+```
+
+Build and run the example:
+
+```bash
+dotnet build libraries/FastWhisper.Client/FastWhisper.Client.slnx
+dotnet run --project libraries/FastWhisper.Client/examples/FastWhisper.Client.Example/FastWhisper.Client.Example.csproj
+```
+
+For detailed usage, see the [FastWhisper.Client repository](https://github.com/capisoft-lib/FastWhisperApi.Client).
+
+**NuGet Package:**
+```bash
+dotnet add package FastWhisper.Client
+```
+
+Published to: **CapisoftLib** NuGet feed.
+
+### 4) MAUI App Example
 
 Open:
 
-- `apps/maui/Capisoft.AI.TranscribeApp/FastWhisperMaui.sln`
+- `examples/maui/Capisoft.AI.TranscribeApp/FastWhisperMaui.sln`
 
 Build targets:
 
@@ -63,7 +99,7 @@ Build targets:
 - iOS: `net10.0-ios` ⚠️ Not tested
 - MacCatalyst: `net10.0-maccatalyst` ⚠️ Not tested
 
-### 4) Docker API
+### 5) Docker API
 
 #### Quick Start with Docker Hub Image
 
