@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Capisoft.AI.TranscribeApp.Pages.HomePage"
+             Title="Home">
+    <ScrollView>
+        <VerticalStackLayout Padding="20" Spacing="16">
+            <Label Text="Fast Whisper"
+                   FontSize="26"
+                   FontAttributes="Bold" />
+
+            <Label Text="Server URL"
+                   FontAttributes="Bold" />
+
+            <Entry x:Name="ServerEntry"
+                   Placeholder="http://10.1.200.10:8000"
+                   Keyboard="Url" />
+
+            <Button Text="Save Server"
+                    Clicked="OnSaveServerClicked" />
+
+            <Button Text="Transcribe"
+                    Clicked="OnTranscribeClicked" />
+
+            <Button Text="Translate"
+                    Clicked="OnTranslateClicked" />
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

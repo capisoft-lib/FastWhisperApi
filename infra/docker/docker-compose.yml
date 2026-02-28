@@ -1,0 +1,28 @@
+# Fast Whisper API - Linux container (GPU). Run: docker compose up --build
+# Volume fast-whisper-cache persists the Whisper model so it is not re-downloaded.
+services:
+  api:
+    build:
+      context: ../..
+      dockerfile: infra/docker/Dockerfile
+    image: fast-whisper-api:latest
+    container_name: fast-whisper-api
+    ports:
+      - "8000:8000"
+    volumes:
+      - fast-whisper-cache:/data/cache
+    environment:
+      - DEVICE_ID=0
+      - BATCH_SIZE=24
+      - FLASH=true
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: 1
+              capabilities: [gpu]
+    restart: unless-stopped
+
+volumes:
+  fast-whisper-cache:

@@ -1,0 +1,37 @@
+.git
+.github
+.venv
+venv
+env
+__pycache__
+*.pyc
+*.pyo
+*.pyd
+.pytest_cache
+.mypy_cache
+.ruff_cache
+
+# Dotnet build artifacts
+**/bin
+**/obj
+**/.vs
+
+# Local machine artifacts
+*.wav
+*.mp3
+output.json
+*.whl
+
+# Secrets
+.env
+.env.*
+*.pem
+*.key
+*.pfx
+
+# Docs and non-runtime files
+docs/
+CHANGELOG.md
+CONTRIBUTING.md
+SECURITY.md
+CODE_OF_CONDUCT.md

@@ -1,0 +1,7 @@
+# Same versions as requirements-api.txt; torch is provided by base image.
+transformers>=4.45.0
+accelerate>=0.33.0
+optimum>=1.21.0
+fastapi>=0.109.0
+uvicorn[standard]>=0.27.0
+python-multipart>=0.0.6

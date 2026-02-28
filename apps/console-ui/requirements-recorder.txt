@@ -1,0 +1,5 @@
+# For record_and_transcribe.py (mic → API). Install: pip install -r requirements-recorder.txt
+numpy
+sounddevice
+soundfile
+requests
