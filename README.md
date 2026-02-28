@@ -48,9 +48,13 @@ infra/
 python -m venv .venv
 .\.venv\Scripts\Activate.ps1
 pip install torch==2.6.* torchvision torchaudio --index-url https://download.pytorch.org/whl/cu124
+# Windows + CUDA 12.4: optional Flash Attention 2 wheel (faster GPU inference)
+pip install "flash_attn-2.7.4%2Bcu124torch2.6.0cxx11abiFALSE-cp311-cp311-win_amd64.whl"
 pip install -r apps/api/requirements-api.txt
 uvicorn app.main:app --host 0.0.0.0 --port 8000 --app-dir apps/api
 ```
+
+A pre-built **Flash Attention 2** wheel for Windows (Python 3.11, CUDA 12.4, PyTorch 2.6) is provided at the repo root: `flash_attn-2.7.4+cu124torch2.6.0cxx11abiFALSE-cp311-cp311-win_amd64.whl`. Without it, the API uses PyTorch SDPA.
 
 For full API usage, parameters, and examples, see [apps/api/README-API.md](apps/api/README-API.md).
 
@@ -124,6 +128,10 @@ docker compose -f infra/docker/docker-compose.yml up --build
 For more information about the Docker deployment and base image, see [infra/docker/README.md](infra/docker/README.md).
 
 **Docker Hub**: [capitaine/fast-whisper-api](https://hub.docker.com/r/capitaine/fast-whisper-api)
+
+## Performance
+
+Tested on NVIDIA GPUs **3060 Ti**, **3080**, and **3090** with very good performance thanks to the [faster-whisper](https://github.com/SYSTRAN/faster-whisper) engine.
 
 ## Environment
 
