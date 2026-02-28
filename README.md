@@ -58,10 +58,10 @@ Open:
 
 Build targets:
 
-- Windows: `net10.0-windows10.0.19041.0`
-- Android: `net10.0-android`
-- iOS: `net10.0-ios`
-- MacCatalyst: `net10.0-maccatalyst`
+- Windows: `net10.0-windows10.0.19041.0` ✅ Tested
+- Android: `net10.0-android` ✅ Tested
+- iOS: `net10.0-ios` ⚠️ Not tested
+- MacCatalyst: `net10.0-maccatalyst` ⚠️ Not tested
 
 ### 4) Docker API
 
