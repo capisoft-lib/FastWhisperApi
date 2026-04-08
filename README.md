@@ -15,6 +15,8 @@ Speech-to-text API and clients using [**faster-whisper**](https://github.com/SYS
 **Infrastructure:**
 - `infra/docker`: Container build and compose files for API deployment.
 
+> **Text-to-speech (sibling stack):** [**OmniVoiceApi**](https://github.com/capisoft-lib/OmniVoiceApi) — same idea (HTTP API, Docker, clients), for text-to-speech (voice cloning, streaming).
+
 ## Repository Layout
 
 ```text
