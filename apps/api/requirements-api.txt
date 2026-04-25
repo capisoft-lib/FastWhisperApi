@@ -15,7 +15,7 @@
 # ---------------------------------------------------------------------------
 transformers>=4.45.0
 accelerate>=0.33.0
-optimum>=1.21.0
+optimum>=2.1.0
 
 # ---------------------------------------------------------------------------
 # 3. Flash Attention 2 (optional; faster on GPU). Install after torch, from local wheel.
